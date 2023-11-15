@@ -21,10 +21,15 @@ const firestore = getFirestore();
 // Регистрация пользователя
 const registerUser = async (email, password) => {
   try {
-    const auth = getAuth();
+    const auth = getAuth(app);
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     console.log("User registered:", user.uid);
+
+    // Добавляем пользователя в Firestore
+    const usersCollection = collection(firestore, "users");
+    await addDoc(usersCollection, { uid: user.uid, email });
+
     return user.uid;
   } catch (error) {
     console.error("Error registering user:", error);
@@ -35,7 +40,7 @@ const registerUser = async (email, password) => {
 // Вход пользователя
 const loginUser = async (email, password) => {
   try {
-    const auth = getAuth();
+    const auth = getAuth(app);
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     console.log("User logged in:", user.uid);

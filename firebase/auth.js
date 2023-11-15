@@ -1,10 +1,10 @@
-
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getFirestore, collection, addDoc, doc, getDoc } from "firebase/firestore";
 
 // Регистрация нового пользователя
-
-
 export function registerUser(email, password) {
-  return firebase.auth().createUserWithEmailAndPassword(email, password)
+  const auth = getAuth();
+  return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Успешно зарегистрирован новый пользователь
       const user = userCredential.user;
@@ -16,6 +16,10 @@ export function registerUser(email, password) {
       addDoc(usersCollection, {
         email: user.email,
         // Другие данные пользователя, которые вы хотите сохранить
+      }).then((docRef) => {
+        console.log('Пользователь добавлен в Firestore, ID документа:', docRef.id);
+      }).catch((error) => {
+        console.error('Ошибка при добавлении пользователя в Firestore:', error);
       });
 
       return user;
@@ -31,8 +35,9 @@ export function registerUser(email, password) {
 
 // Вход пользователя
 export async function login(email, password) {
+  const auth = getAuth();
   try {
-    const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
     // Успешный вход пользователя
     const user = userCredential.user;
     console.log('Пользователь вошел:', user);
@@ -63,7 +68,8 @@ export async function login(email, password) {
 
 // Выход пользователя
 export function logout() {
-  return firebase.auth().signOut()
+  const auth = getAuth();
+  return signOut(auth)
     .then(() => {
       // Пользователь вышел
       console.log('Пользователь вышел');
