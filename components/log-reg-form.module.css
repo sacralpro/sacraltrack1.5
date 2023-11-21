@@ -1,0 +1,315 @@
+.formlogregChild {
+  position: absolute;
+  top: 296px;
+  left: 33px;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  width: 2px;
+  height: 2px;
+}
+.componentLogInsignInChild {
+  position: absolute;
+  top: calc(50% - 414.5px);
+  left: calc(50% - 417px);
+  border-radius: var(--br-11xl);
+  background-color: var(--color-gray-800);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  width: 834px;
+  height: 829px;
+}
+.logIn {
+  position: absolute;
+  top: 59.83%;
+  left: 47.36%;
+  font-size: var(--font-size-sm);
+  line-height: 18px;
+  font-weight: 900;
+}
+.buttonGoogleChild {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--br-mini);
+  background-color: var(--color-gray-700);
+  border: 0.6px solid var(--color-gray-700);
+  box-sizing: border-box;
+}
+.withGoogle {
+  position: absolute;
+  width: 25.58%;
+  top: 32%;
+  left: 37.25%;
+  line-height: 18px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+.googleIcon {
+  position: absolute;
+  height: 40%;
+  width: 5%;
+  top: 30%;
+  right: 91.25%;
+  bottom: 30%;
+  left: 3.75%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.buttonGoogle {
+  position: absolute;
+  top: 598px;
+  left: 217px;
+  width: 400px;
+  height: 50px;
+}
+.loginWithPhoneNomberChild {
+  position: absolute;
+  height: 100%;
+  width: 87.5%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 12.5%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.withPhoneNomber {
+  position: absolute;
+  width: 32.1%;
+  top: 34%;
+  left: 34%;
+  line-height: 18px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+.phoneChild {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.frameChild,
+.frameItem {
+  position: absolute;
+  top: 0;
+  left: 2px;
+  border-radius: var(--br-11xs);
+  border: 2px solid var(--color-white);
+  box-sizing: border-box;
+  width: 12px;
+  height: 16px;
+}
+.frameItem {
+  left: 6px;
+  width: 4px;
+  height: 3px;
+}
+.rectangleParent {
+  position: absolute;
+  height: 32%;
+  width: 31.93%;
+  top: 34%;
+  right: 34.14%;
+  bottom: 34%;
+  left: 33.94%;
+  overflow: hidden;
+}
+.phone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 49.8px;
+  height: 50px;
+}
+.logInChild,
+.loginWithPhoneNomber {
+  position: absolute;
+  top: 524px;
+  left: 217px;
+  width: 400px;
+  height: 50px;
+}
+.logInChild {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-mini);
+  background-color: var(--green-btn-passive);
+  height: 80px;
+}
+.logIn2 {
+  position: absolute;
+  top: 28px;
+  left: 170.9px;
+  font-size: var(--font-size-sm);
+  line-height: 24px;
+  display: inline-block;
+  font-family: var(--font-gotham-pro);
+  color: var(--color-white);
+  text-align: left;
+  width: 58px;
+}
+.logIn1,
+.signUpChild {
+  position: absolute;
+  width: 400px;
+  height: 80px;
+}
+.logIn1 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 366px;
+  left: 217px;
+}
+.signUpChild {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-mini);
+  background-color: var(--color-gray-700);
+  border: 1px solid var(--color-white);
+  box-sizing: border-box;
+}
+.signUp1 {
+  position: absolute;
+  top: 28px;
+  left: 164px;
+  font-size: var(--font-size-sm);
+  line-height: 24px;
+  display: inline-block;
+  font-family: var(--font-gotham-pro);
+  color: var(--color-white);
+  text-align: left;
+  width: 72.5px;
+}
+.signUp {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 668px;
+  left: 217px;
+  width: 400px;
+  height: 80px;
+}
+.forgotPassword {
+  position: absolute;
+  top: 323px;
+  left: 363px;
+  font-size: var(--font-size-xs);
+  line-height: 18px;
+  font-weight: 500;
+  color: var(--color-cornflowerblue);
+}
+.componentLogInsignInItem {
+  border: 0.6px solid var(--color-darkslateblue);
+  background-color: var(--color-gray-700);
+  position: absolute;
+  top: 168px;
+  left: 217px;
+  border-radius: var(--br-mini);
+  box-sizing: border-box;
+  width: 400px;
+  height: 60px;
+}
+.sacralTrackChild {
+  position: absolute;
+  top: 0;
+  left: 62px;
+  background-color: var(--color-gray-800);
+  width: 710px;
+  height: 120px;
+}
+.logotypeIcon,
+.maskGroupIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 833px;
+  height: 120px;
+}
+.logotypeIcon {
+  left: 83px;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+}
+.sacralTrack1 {
+  margin: 0;
+  position: absolute;
+  top: 57.5%;
+  left: 0;
+  font-size: inherit;
+  letter-spacing: 0.05em;
+  line-height: 34px;
+  font-weight: 900;
+  font-family: inherit;
+}
+.logo,
+.sacralTrack {
+  position: absolute;
+  top: 20px;
+  left: 313px;
+  width: 209px;
+  height: 80px;
+}
+.sacralTrack {
+  top: 0;
+  left: 0;
+  width: 833px;
+  height: 120px;
+  text-align: center;
+  font-size: var(--font-size-5xl);
+}
+.componentLogInsignIn,
+.formlogregItem {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 834px;
+  height: 829px;
+}
+.formlogregItem {
+  border: 1px solid var(--color-skyblue);
+  background-color: var(--color-gray-700);
+  top: 248px;
+  left: 217px;
+  border-radius: var(--br-mini);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  width: 400px;
+  height: 60px;
+}
+.iconEye {
+  position: absolute;
+  top: 270px;
+  left: 579px;
+  width: 16px;
+  height: 16px;
+  overflow: hidden;
+}
+.formlogreg {
+  position: absolute;
+  top: calc(50% - 410px);
+  left: 303px;
+  width: 834px;
+  height: 829px;
+  text-align: left;
+  font-size: var(--font-size-smi);
+  color: var(--color-white);
+  font-family: var(--font-gotham-pro);
+}

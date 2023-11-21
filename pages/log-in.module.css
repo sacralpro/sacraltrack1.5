@@ -1,0 +1,25 @@
+.sacralTarck {
+  position: absolute;
+  top: 970px;
+  left: 626px;
+  line-height: 17.48px;
+  font-weight: 500;
+}
+.iconInformation {
+  position: absolute;
+  top: 126px;
+  left: 1374px;
+  width: 16px;
+  height: 16px;
+  overflow: hidden;
+}
+.logIn {
+  position: relative;
+  background: linear-gradient(243.18deg, hsl(194, 68%, 41%), #093786);
+  width: 100%;
+  height: 1024px;
+  text-align: left;
+  font-size: var(--font-size-smi);
+  color: var(--color-white);
+  font-family: var(--font-gotham-pro);
+}

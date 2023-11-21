@@ -4,7 +4,10 @@
   "private": true,
   "dependencies": {
     "@firebase/analytics": "^0.10.0",
+    "@firebase/storage": "^0.11.2",
+    "@types/axios": "^0.14.0",
     "@types/jest": "^29.5.4",
+    "axios": "^1.6.2",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -19,7 +22,9 @@
     "next": "^13.4.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0",
+    "react-dropzone": "^14.2.3",
+    "react-firebaseui": "^6.0.0",
+    "react-router-dom": "^6.18.0",
     "shazam-api": "^0.1.2",
     "spotify-web-api-node": "^5.0.2",
     "universal-analytics": "^0.5.3",
@@ -27,8 +32,9 @@
   },
   "devDependencies": {
     "@types/node": "^20.5.7",
-    "@types/react": "^18.2.21",
+    "@types/react": "^18.2.38",
     "@types/react-dom": "^18.2.7",
+    "@types/react-dropzone": "^5.1.0",
     "eslint": "8.17.0",
     "eslint-config-next": "13.2.4",
     "typescript": "^5.2.2"
@@ -37,6 +43,7 @@
     "dev": "next dev",
     "build": "next build && next export -o build/",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "rm -rf .next"
   }
 }

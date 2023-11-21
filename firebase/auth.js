@@ -1,6 +1,9 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { getFirestore, collection, addDoc, doc, getDoc } from "firebase/firestore";
 
+
+
+
 // Регистрация нового пользователя
 export function registerUser(email, password) {
   const auth = getAuth();
@@ -22,7 +25,7 @@ export function registerUser(email, password) {
         console.error('Ошибка при добавлении пользователя в Firestore:', error);
       });
 
-      return user;
+      return user; 
     })
     .catch((error) => {
       // Произошла ошибка при регистрации пользователя

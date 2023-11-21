@@ -1,0 +1,127 @@
+.logoIcon {
+  position: absolute;
+  height: 80.3%;
+  width: calc(100% - 117.5px);
+  top: 7.07%;
+  right: 117.5px;
+  bottom: 12.63%;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.sacralTrack {
+  position: absolute;
+  top: 0;
+  left: 35.6px;
+  line-height: 19.34px;
+}
+.logogtype {
+  position: relative;
+  width: 137.9px;
+  height: 19.8px;
+}
+.iconComponentsvg {
+  position: relative;
+  width: 26.4px;
+  height: 26.4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.hipHop {
+  position: relative;
+  line-height: 19.79px;
+  font-weight: 500;
+}
+.btnGenre {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16.49px;
+  font-family: var(--font-gotham-pro-narrow);
+}
+.people {
+  position: relative;
+  line-height: 12.21px;
+}
+.items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 59.37px;
+}
+.buttonSearch {
+  position: relative;
+  width: 135.4px;
+  height: 50.9px;
+}
+.buttonCartChild {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.span {
+  color: var(--color-white);
+}
+.div {
+  position: absolute;
+  top: 30.84%;
+  left: 10.02%;
+  line-height: 16.29px;
+  font-weight: 500;
+}
+.buttonCart1 {
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 50%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.buttonCart {
+  position: relative;
+  width: 101.8px;
+  height: 50.9px;
+}
+.menu,
+.rightSide {
+  display: flex;
+  flex-direction: row;
+}
+.rightSide {
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 31.33px;
+  font-size: 13.19px;
+  color: var(--color-mediumseagreen-200);
+}
+.menu {
+  position: absolute;
+  top: 19px;
+  left: calc(50% - 699px);
+  border-radius: 20.36px;
+  background-color: var(--color-gray-300);
+  border: 0.3px solid var(--color-gray-600);
+  box-sizing: border-box;
+  width: 1398.5px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9.895047187805176px 19.79009437561035px;
+  text-align: left;
+  font-size: 16.49px;
+  color: var(--color-white);
+  font-family: var(--font-gotham-pro);
+}

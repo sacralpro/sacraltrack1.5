@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { useRouter } from "next/router";
 import { UserType } from '../types/UserType';
 import { registerUser } from '../firebase/auth';
-// import { endSession, getSession, isLoggedIn } from '../firebase/session.js';
 import { startSession } from '../firebase/session';
 
 
 
+
 function Registration() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,6 +23,8 @@ function Registration() {
     // Выполнение дополнительных действий после успешной регистрации
     startSession(user);
     // Дополнительные действия после успешной регистрации...
+    // Перенаправление на главную страницу
+    router.push("/");
   })
   .catch((error: Error) => {
     // Произошла ошибка при регистрации

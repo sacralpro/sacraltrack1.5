@@ -3,18 +3,6 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 import { app } from "./firebase"; // Импортируйте объект `app` из вашего файла настройки Firebase
 
 
-
-/*
-export const createUser = async (email, password) => {
-  return createUserWithEmailAndPassword(getAuth(app), email, password);
-}
-
-export const signInUser = async (email, password) => {
-  return signInWithEmailAndPassword(getAuth(app), email, password);
-}
-*/
-
-
 // Получение экземпляра Firestore
 const firestore = getFirestore();
 

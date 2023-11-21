@@ -1,17 +1,17 @@
 .child,
 .item {
   position: absolute;
-  height: 21.43%;
+  height: 21.25%;
   width: 5.26%;
-  top: 39.29%;
+  top: 39.38%;
   right: 94.74%;
-  bottom: 39.29%;
+  bottom: 39.38%;
   left: 0;
   border-radius: var(--br-3xs);
   background: linear-gradient(
       180deg,
       rgba(7, 87, 222, 0.8),
-      rgba(255, 171, 252, 0.33)
+      rgba(255, 172, 252, 0.33)
     ),
     #018cfd;
   opacity: 0.5;
@@ -23,10 +23,10 @@
   transform-origin: 0 0;
 }
 .inner {
-  height: 42.86%;
-  top: 28.57%;
+  height: 43.13%;
+  top: 28.75%;
   right: 84.21%;
-  bottom: 28.57%;
+  bottom: 28.13%;
   left: 10.53%;
   opacity: 0.6;
 }
@@ -40,15 +40,15 @@
   background: linear-gradient(
       180deg,
       rgba(7, 87, 222, 0.8),
-      rgba(255, 171, 252, 0.33)
+      rgba(255, 172, 252, 0.33)
     ),
     #018cfd;
 }
 .rectangleDiv {
-  height: 42.86%;
-  top: 28.57%;
+  height: 43.13%;
+  top: 28.75%;
   right: 5.26%;
-  bottom: 28.57%;
+  bottom: 28.13%;
   left: 89.47%;
   transform: rotate(180deg);
   transform-origin: 0 0;
@@ -56,10 +56,10 @@
 }
 .child1,
 .child2 {
-  height: 57.14%;
-  top: 21.43%;
+  height: 56.88%;
+  top: 21.25%;
   right: 73.68%;
-  bottom: 21.43%;
+  bottom: 21.88%;
   left: 21.05%;
   opacity: 0.7;
 }
@@ -70,10 +70,10 @@
   transform-origin: 0 0;
 }
 .child3 {
-  height: 78.57%;
-  top: 10.71%;
+  height: 78.75%;
+  top: 10.63%;
   right: 63.16%;
-  bottom: 10.71%;
+  bottom: 10.63%;
   left: 31.58%;
   opacity: 0.8;
 }
@@ -87,15 +87,15 @@
   background: linear-gradient(
       180deg,
       rgba(7, 87, 222, 0.8),
-      rgba(255, 171, 252, 0.33)
+      rgba(255, 172, 252, 0.33)
     ),
     #018cfd;
 }
 .child4 {
-  height: 78.57%;
-  top: 10.71%;
+  height: 78.75%;
+  top: 10.63%;
   right: 26.32%;
-  bottom: 10.71%;
+  bottom: 10.63%;
   left: 68.42%;
   transform: rotate(180deg);
   transform-origin: 0 0;
@@ -135,12 +135,103 @@
   right: 23.66%;
   left: 70.99%;
 }
+.child27 {
+  height: 21.43%;
+  top: 39.29%;
+  right: 94.74%;
+  bottom: 39.29%;
+  left: 0;
+  opacity: 0.5;
+}
+.child27,
+.child28,
+.child29,
+.child30 {
+  position: absolute;
+  width: 5.26%;
+  border-radius: var(--br-3xs);
+  background: linear-gradient(
+      180deg,
+      rgba(7, 87, 222, 0.8),
+      rgba(255, 172, 252, 0.33)
+    ),
+    #018cfd;
+}
+.child28 {
+  height: 21.43%;
+  top: 39.29%;
+  right: -5.26%;
+  bottom: 39.29%;
+  left: 100%;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+  opacity: 0.5;
+}
+.child29,
+.child30 {
+  height: 42.86%;
+  top: 28.57%;
+  right: 84.21%;
+  bottom: 28.57%;
+  left: 10.53%;
+  opacity: 0.6;
+}
+.child30 {
+  right: 5.26%;
+  left: 89.47%;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+}
+.child31 {
+  height: 57.14%;
+  top: 21.43%;
+  right: 73.68%;
+  bottom: 21.43%;
+  left: 21.05%;
+  opacity: 0.7;
+}
+.child31,
+.child32,
+.child33,
+.child34 {
+  position: absolute;
+  width: 5.26%;
+  border-radius: var(--br-3xs);
+  background: linear-gradient(
+      180deg,
+      rgba(7, 87, 222, 0.8),
+      rgba(255, 172, 252, 0.33)
+    ),
+    #018cfd;
+}
+.child32 {
+  height: 57.14%;
+  top: 21.43%;
+  right: 15.79%;
+  bottom: 21.43%;
+  left: 78.95%;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+  opacity: 0.7;
+}
+.child33,
+.child34 {
+  height: 78.57%;
+  top: 10.71%;
+  right: 63.16%;
+  bottom: 10.71%;
+  left: 31.58%;
+  opacity: 0.8;
+}
+.child34 {
+  right: 26.32%;
+  left: 68.42%;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+}
 .div3,
 .div4,
-.div5,
-.div6,
-.div7,
-.div8 {
+.div5 {
   position: absolute;
   height: 60.87%;
   width: 5.35%;
@@ -150,24 +241,114 @@
   left: 5.92%;
 }
 .div4,
-.div5,
-.div6,
-.div7,
-.div8 {
+.div5 {
   right: 53.24%;
   left: 41.41%;
 }
-.div5,
-.div6,
-.div7,
-.div8 {
+.div5 {
   right: 17.75%;
   left: 76.9%;
+}
+.child57 {
+  height: 21.36%;
+  top: 39.09%;
+  right: 94.74%;
+  bottom: 39.55%;
+  left: 0;
+  opacity: 0.5;
+}
+.child57,
+.child58,
+.child59,
+.child60 {
+  position: absolute;
+  width: 5.26%;
+  border-radius: var(--br-3xs);
+  background: linear-gradient(
+      180deg,
+      rgba(7, 87, 222, 0.8),
+      rgba(255, 172, 252, 0.33)
+    ),
+    #018cfd;
+}
+.child58 {
+  height: 21.36%;
+  top: 39.09%;
+  right: -5.26%;
+  bottom: 39.55%;
+  left: 100%;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+  opacity: 0.5;
+}
+.child59,
+.child60 {
+  height: 42.73%;
+  top: 28.64%;
+  right: 84.21%;
+  bottom: 28.64%;
+  left: 10.53%;
+  opacity: 0.6;
+}
+.child60 {
+  right: 5.26%;
+  left: 89.47%;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+}
+.child61 {
+  height: 57.27%;
+  top: 21.36%;
+  right: 73.68%;
+  bottom: 21.36%;
+  left: 21.05%;
+  opacity: 0.7;
+}
+.child61,
+.child62,
+.child63,
+.child64 {
+  position: absolute;
+  width: 5.26%;
+  border-radius: var(--br-3xs);
+  background: linear-gradient(
+      180deg,
+      rgba(7, 87, 222, 0.8),
+      rgba(255, 172, 252, 0.33)
+    ),
+    #018cfd;
+}
+.child62 {
+  height: 57.27%;
+  top: 21.36%;
+  right: 15.79%;
+  bottom: 21.36%;
+  left: 78.95%;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+  opacity: 0.7;
+}
+.child63,
+.child64 {
+  height: 78.64%;
+  top: 10.91%;
+  right: 63.16%;
+  bottom: 10.45%;
+  left: 31.58%;
+  opacity: 0.8;
+}
+.child64 {
+  right: 26.32%;
+  left: 68.42%;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
 }
 .div6,
 .div7,
 .div8 {
+  position: absolute;
   height: 47.83%;
+  width: 5.35%;
   top: 26.09%;
   right: 82.82%;
   bottom: 26.09%;
@@ -187,8 +368,6 @@
 .div12,
 .div13,
 .div14,
-.div15,
-.div16,
 .div9 {
   position: absolute;
   height: 60.87%;
@@ -202,45 +381,131 @@
 .div11,
 .div12,
 .div13,
-.div14,
-.div15,
-.div16 {
+.div14 {
   right: 41.41%;
   left: 53.24%;
 }
 .div11,
 .div12,
 .div13,
-.div14,
-.div15,
-.div16 {
+.div14 {
   right: 5.92%;
   left: 88.73%;
 }
 .div12,
 .div13,
-.div14,
-.div15,
-.div16 {
+.div14 {
   right: 70.99%;
   left: 23.66%;
 }
 .div13,
-.div14,
-.div15,
-.div16 {
+.div14 {
   right: 35.49%;
   left: 59.15%;
 }
-.div14,
-.div15,
-.div16 {
+.div14 {
   right: 0;
   left: 94.65%;
 }
+.child147 {
+  height: 21.52%;
+  top: 39.35%;
+  right: 94.74%;
+  bottom: 39.13%;
+  left: 0;
+  opacity: 0.5;
+}
+.child147,
+.child148,
+.child149,
+.child150 {
+  position: absolute;
+  width: 5.26%;
+  border-radius: var(--br-3xs);
+  background: linear-gradient(
+      180deg,
+      rgba(7, 87, 222, 0.8),
+      rgba(255, 172, 252, 0.33)
+    ),
+    #018cfd;
+}
+.child148 {
+  height: 21.52%;
+  top: 39.35%;
+  right: -5.26%;
+  bottom: 39.13%;
+  left: 100%;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+  opacity: 0.5;
+}
+.child149,
+.child150 {
+  height: 42.83%;
+  top: 28.48%;
+  right: 84.21%;
+  bottom: 28.7%;
+  left: 10.53%;
+  opacity: 0.6;
+}
+.child150 {
+  right: 5.26%;
+  left: 89.47%;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+}
+.child151 {
+  height: 57.17%;
+  top: 21.52%;
+  right: 73.68%;
+  bottom: 21.3%;
+  left: 21.05%;
+  opacity: 0.7;
+}
+.child151,
+.child152,
+.child153,
+.child154 {
+  position: absolute;
+  width: 5.26%;
+  border-radius: var(--br-3xs);
+  background: linear-gradient(
+      180deg,
+      rgba(7, 87, 222, 0.8),
+      rgba(255, 172, 252, 0.33)
+    ),
+    #018cfd;
+}
+.child152 {
+  height: 57.17%;
+  top: 21.52%;
+  right: 15.79%;
+  bottom: 21.3%;
+  left: 78.95%;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+  opacity: 0.7;
+}
+.child153,
+.child154 {
+  height: 78.48%;
+  top: 10.65%;
+  right: 63.16%;
+  bottom: 10.87%;
+  left: 31.58%;
+  opacity: 0.8;
+}
+.child154 {
+  right: 26.32%;
+  left: 68.42%;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+}
 .div15,
 .div16 {
+  position: absolute;
   height: 100%;
+  width: 5.35%;
   top: 0;
   right: 65.07%;
   bottom: 0;
@@ -251,7 +516,6 @@
   left: 65.07%;
 }
 .audio {
-  position: relative;
   width: 710px;
   height: 46px;
 }
