@@ -6,6 +6,25 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import TrackCard from "../components/trackcard"; // Импортируем компонент карточки трека
+import WaveSurfer from 'wavesurfer.js'
+import { Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import LeftSidebar from "../components/left-sidebar";
+
+
+
+// Materia Ui styles huk
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+  },
+  cardContainer: {
+    display: "flex",
+    justifyContent: "center",
+  },
+}));
 
 // marketplace.tsx
 interface MarketplaceProps {
@@ -28,6 +47,9 @@ const Marketplace: React.FC = () => {
   const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [loading, setLoading] = useState(true); // Добавляем состояние загрузки
+
+  // Material Ui styles
+  const classes = useStyles();
 
   // Загрузка треков из Firebase Storage при монтировании компонента
   useEffect(() => {
@@ -85,10 +107,16 @@ const Marketplace: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className={classes.root}>
+    <Grid container spacing={2} className={classes.cardContainer}>
+    <Grid item xs={3}>
+        <LeftSidebar />
+    </Grid>
+    <Grid item xs={9}>
+        <Grid container spacing={2}>
       {tracks.map((track) => (
         // Здесь перенаправляем отображение треков в импортированный компонент карточки трека
-        
+        <Grid item xs={12} sm={6} md={4} key={track.id}>
         <TrackCard
           key={track.id}
           track={track}
@@ -96,7 +124,11 @@ const Marketplace: React.FC = () => {
           onBuy={handleBuy}
           isPlaying={currentTrack && currentTrack.id === track.id && isPlaying}
         />
+        </Grid>
       ))}
+      </Grid>
+      </Grid>
+    </Grid>
       {currentTrack && (
         <div>
           <img src={currentTrack.imageUrl} alt={currentTrack.title} />
@@ -107,6 +139,7 @@ const Marketplace: React.FC = () => {
       )}
       
     </div>
+    
     
   );
 };
