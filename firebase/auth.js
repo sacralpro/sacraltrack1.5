@@ -1,5 +1,8 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore, collection, addDoc, doc, getDoc } from "firebase/firestore";
+
+
+
 
 
 
@@ -15,14 +18,14 @@ export function registerUser(email, password) {
 
       // Записываем пользователя в базу данных Firestore
       const db = getFirestore();
-      const usersCollection = collection(db, "users");
-      addDoc(usersCollection, {
-        email: user.email,
-        // Другие данные пользователя, которые вы хотите сохранить
+      const userArtistCollection = collection(db, "userartist");
+      addDoc(userArtistCollection, {
+        email: email,
+        password: password
       }).then((docRef) => {
-        console.log('Пользователь добавлен в Firestore, ID документа:', docRef.id);
+        console.log('Пользователь добавлен в коллекцию userartist, ID документа:', docRef.id);
       }).catch((error) => {
-        console.error('Ошибка при добавлении пользователя в Firestore:', error);
+        console.error('Ошибка при добавлении пользователя в коллекцию userartist:', error);
       });
 
       return user; 
@@ -47,8 +50,8 @@ export async function login(email, password) {
 
     // Получаем информацию о пользователе из базы данных Firestore
     const db = getFirestore();
-    const usersCollection = collection(db, "users");
-    const userDoc = doc(usersCollection, user.uid);
+    const userArtistCollection = collection(db, "userartist");
+    const userDoc = doc(userArtistCollection, user.uid);
     const userSnapshot = await getDoc(userDoc);
 
     if (userSnapshot.exists()) {
@@ -85,5 +88,38 @@ export function logout() {
       throw error;
     });
 }
+// Вход пользователя через Gmail
+export async function loginWithGoogle() {
+  const auth = getAuth();
+  const provider = new GoogleAuthProvider();
 
-// Другие функции для управления аутентификацией пользователей...
+  try {
+    const userCredential = await signInWithPopup(auth, provider);
+    // Успешный вход пользователя через Gmail
+    const user = userCredential.user;
+    console.log('Пользователь вошел через Gmail:', user);
+
+    // Получаем информацию о пользователе из базы данных Firestore
+    const db = getFirestore();
+    const userArtistCollection = collection(db, "userartist");
+    const userDoc = doc(userArtistCollection, user.uid);
+    const userSnapshot = await getDoc(userDoc);
+
+    if (userSnapshot.exists()) {
+      const userData = userSnapshot.data();
+      // Используйте полученные данные о пользователе
+      console.log('Данные пользователя:', userData);
+    } else {
+      console.log('Пользовательские данные не найдены');
+    }
+
+    return user;
+  } catch (error) {
+    // Произошла ошибка при входе через Gmail
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.error('Ошибка:', errorCode, errorMessage);
+    throw error;
+  }
+}
+

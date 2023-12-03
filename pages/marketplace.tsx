@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 // marketplace.tsx
 interface MarketplaceProps {
   // остальные определения свойств...

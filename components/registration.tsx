@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
+import 'firebase/firestore';
 import styles from './registration.module.css';
+import { MouseEvent } from 'react';
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from "firebase/auth";
 
 interface RegistrationFormProps {
   handleRegistration: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  handleGoogleRegistration: () => void; // Добавляем обработчик события для регистрации с помощью Google
+  handleGoogle: () => void; // Добавляем обработчик события для регистрации с помощью Google
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const RegistrationForm: React.FC<RegistrationFormProps> = ({
   handleRegistration,
-  handleGoogleRegistration,
+  handleGoogle,
   setEmail,
   setPassword,
 }) => {
@@ -26,18 +29,41 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
   };
 
   const handleLogin = () => {
-    // Обработчик нажатия на кнопку "Log in"
-    // Ваш код обработки входа здесь
+    // ...
   };
 
   const handleRegistrationClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+      
     const userData = {
       email: email,
       password: password
     };
-    // Ваш код обработки регистрации здесь
+  
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, userData.email, userData.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log('Пользователь зарегистрирован:', user);
+        // Дополнительные действия после успешной регистрации пользователя
+      })
+      .catch((error) => {
+        console.error('Ошибка при регистрации:', error);
+        // Обработка ошибки регистрации
+      });
   };
+
+  const loginWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const auth = getAuth();
+      await signInWithPopup(auth, provider); // Используйте signInWithPopup для выполнения входа через Google
+      handleGoogle(); // Обрабатываем результат входа через Google
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   return (
     <div className={styles['main-container']}>
@@ -55,7 +81,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
           </span>
         </div>
         <div className={styles['group']}>
-          <button onClick={handleRegistrationClick} className={styles['text-4']}>Зарегистрироваться</button>
+          <button onClick={handleRegistration} className={styles['text-4']}>Зарегистрироваться</button>
         </div>
         <span className={styles['text-5']}>
           <button onClick={handleLogin}>Войти</button>
@@ -71,7 +97,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
             <div className={styles['pic-4']} />
             
             <span className={styles['text-7']}>с помощью Google</span>
-          <button onClick={handleGoogleRegistration} className={styles['google-registration-button']}>
+          <button onClick={handleGoogle} className={styles['google-registration-button']}>
             Регистрация с помощью Google
           </button>
           </div>

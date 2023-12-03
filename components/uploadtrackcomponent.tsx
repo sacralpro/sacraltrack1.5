@@ -1,32 +1,9 @@
-import React, { useState, ChangeEvent, useRef } from 'react';
+import React, { useState, ChangeEvent, useRef, useEffect, SetStateAction } from 'react';
 import styles from './uploadtrack.module.css';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-
-
-/* function AuthStateListener() {
-  useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // Пользователь вошел
-        console.log('Пользователь вошел:', user);
-        // Ваш код для обработки входа пользователя, если нужно
-      } else {
-        // Пользователь вышел
-        console.log('Пользователь вышел');
-        // Ваш код для обработки выхода пользователя, если нужно
-      }
-    }); 
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
-
-  return null;
-}  */
+import { User } from '../models/userartist';
 
 
 
@@ -42,17 +19,44 @@ interface UploadTrackProps {
   onUpload: () => void;
 }
 
-export default function UploadTrackСomponent(props: UploadTrackProps) { 
-  const [showModal, setShowModal] = useState(false);
+// Добавляем свойство "crossOriginOpenerPolicy" к типу "HTMLAttributes<HTMLAnchorElement>"
+interface CustomAnchorProps {
+  children?: React.ReactNode;
+  href: string;
+  crossOriginOpenerPolicy: string;
+  // Другие необходимые свойства
+}
 
+
+
+export default function UploadTrackComponent(props: UploadTrackProps) {
+  const [showModal, setShowModal] = useState(false);
   const [tags, setTags] = useState<string[]>(['Techno']);
   const [trackName, setTrackName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [audioFile, setAudioFile] = useState<File | null>(null);
   const [artwork, setArtwork] = useState<File | null>(null);
   const [genre, setGenre] = useState<string>('choose-genre');
-
   const artworkInputRef = useRef<HTMLInputElement>(null);
+  const [user, setUser] = useState<User | null>(null);
+
+  function createLink() {
+    const link = document.createElement('a');
+    link.href = 'log-in-page.html';
+    link.innerText = 'Sign In';
+
+    // Приводим тип "link" к типу "any" для установки свойства "crossOriginOpenerPolicy"
+    const anyLink: any = link;
+    anyLink.crossOriginOpenerPolicy = 'same-origin';
+
+    // Проверяем, что container не равен null, перед добавлением ссылки
+    const container = document.getElementById('link-container');
+    if (container) {
+      container.appendChild(link);
+    } else {
+      console.error('Container element not found');
+    }
+  }
 
   const handleAddTag = () => {
     const newTag = prompt('Enter a new tag');
@@ -72,87 +76,79 @@ export default function UploadTrackСomponent(props: UploadTrackProps) {
   };
 
   const handleUpload = () => {
-    console.log('Функция handleUpload выполняется'); 
+    console.log('Функция handleUpload выполняется');
 
     // Проверяем, аутентифицирован ли пользователь
     const auth = getAuth();
     const user = auth.currentUser;
-    if (user) {
-      // Пользователь не вошел в систему, вы можете показать сообщение или перенаправить пользователя на страницу входа
-      console.log("Вы не вошли в аккаунт");
+    if (!user) {
+      // Пользователь не вошел в аккаунт, предлагаем войти
+      setShowModal(true);
       return;
     }
 
-    else {
-      // Пользователь не вошел в аккаунт, предлагаем войти
-      setShowModal(true);
+    setUser(null);
 
+    if (!audioFile || !artwork || !trackName || !genre)  {
+      // Проверяем наличие аудио и изображения
+      if (!audioFile && !artwork) 
+      {
+        alert('Please upload audio and artwork.');
+      } else if (!audioFile) {
+        alert('Please upload audio.');
+      } else if (!artwork) {
+        alert('Please upload artwork.');
+      }
+      return;
     }
 
-    if (audioFile && artwork) {
-      const storage = getStorage();
-      const db = getFirestore();
-      const user = getAuth().currentUser;
-  
-      if (user) {
-        const storageRef = ref(storage, 'tracks');
-        const audioRef = ref(storageRef, `${user.uid}/${audioFile.name}`);
-        const artworkRef = ref(storageRef, `${user.uid}/${artwork.name}`);
-  
-        Promise.all([
-          uploadBytes(audioRef, audioFile),
-          uploadBytes(artworkRef, artwork)
-        ])
-          .then((snapshot) => {
-            const audioDownloadURL = getDownloadURL(snapshot[0].ref);
-            const artworkDownloadURL = getDownloadURL(snapshot[1].ref);
-  
-            Promise.all([audioDownloadURL, artworkDownloadURL])
-              .then(([audioURL, artworkURL]) => {
-                const trackData = {
-                  trackName,
-                  tags,
-                  description,
-                  genre,
-                  audioURL,
-                  artworkURL
-                };
-  
-                addDoc(collection(db, 'tracks'), trackData)
-                  .then(() => {
-                    console.log('Трек успешно загружен!');
-                    props.onUpload(); // вызов функции onUpload
-                  })
-                  .catch((error) => {
-                    console.error('Ошибка при загрузке трека:', error);
-                  });
+    const storage = getStorage();
+    const db = getFirestore();
+    const storageRef = ref(storage, 'tracks');
+    const audioRef = ref(storageRef, `${user.uid}/${audioFile.name}`);
+    const artworkRef = ref(storageRef, `${user.uid}/${artwork.name}`);
+
+    Promise.all([
+      uploadBytes(audioRef, audioFile),
+      uploadBytes(artworkRef, artwork)
+    ])
+      .then((snapshot) => {
+        const audioDownloadURL = getDownloadURL(snapshot[0].ref);
+        const artworkDownloadURL = getDownloadURL(snapshot[1].ref);
+
+        Promise.all([audioDownloadURL, artworkDownloadURL])
+          .then(([audioURL, artworkURL]) => {
+            const trackData = {
+              trackName,
+              tags,
+              description,
+              genre,
+              audioURL,
+              artworkURL
+            };
+
+            addDoc(collection(db, 'tracks'), trackData)
+              .then(() => {
+                console.log('Track uploaded successfully!');
+                props.onUpload();
               })
               .catch((error) => {
-                console.error('Ошибка при получении URL-адресов для загрузки:', error);
+                console.error('Error uploading track:', error);
               });
           })
           .catch((error) => {
-            console.error('Ошибка при загрузке файлов:', error);
+            console.error('Error getting upload URLs:', error);
           });
-
-          if (audioFile && artwork) {
-      } else {
-        if (!audioFile && !artwork) {
-          alert('Пожалуйста, загрузите аудио и изображение.');
-        } else if (!audioFile) {
-          alert('Пожалуйста, загрузите аудио.');
-        } else if (!artwork) {
-          alert('Пожалуйста, загрузите изображение.');
-        }
-        return;
-      }
-    }
-    }
+      })
+      .catch((error) => {
+        console.error('Error uploading files:', error);
+      });
   };
 
   const handleLogin = () => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
+
     signInWithPopup(auth, provider)
       .then((result) => {
         // Успешный вход в аккаунт
@@ -160,15 +156,36 @@ export default function UploadTrackСomponent(props: UploadTrackProps) {
         handleUpload();
       })
       .catch((error) => {
-        console.error('Ошибка при входе в аккаунт:', error);
+        console.error('Error signing in:', error);
       });
   };
-  
 
-  
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(null);
+      if (user) {
+        // Пользователь вошел
+        console.log('User signed in:', user);
+        // Ваш код для обработки входа пользователя, если нужно
+      } else {
+        // Пользователь вышел
+        console.log('User signed out');
+        // Ваш код для обработки выхода пользователя, если нужно
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
+
     <div className={styles['main-container']}>
+     
+
+      {/* Код для рендеринга изображения */}
       <div className={`${styles['artwork-upload']} ${styles['image-upload']}`} onClick={() => artworkInputRef.current?.click()}>
         {artwork ? (
           <img src={URL.createObjectURL(artwork)} alt="Artwork" />
@@ -183,6 +200,8 @@ export default function UploadTrackСomponent(props: UploadTrackProps) {
           ref={artworkInputRef}
         />
       </div>
+
+      {/* Код для добавления тегов */}
       <div className={styles['list-view']}>
         <div className={styles['view-group']}>
           {tags.map((tag, index) => (
@@ -191,28 +210,33 @@ export default function UploadTrackСomponent(props: UploadTrackProps) {
             </div>
           ))}
           <div className={styles['button-add-new-tag']}>
-
-          <button className={styles['tag-button']} onClick={handleAddTag}>
+            <button className={styles['tag-button']} onClick={handleAddTag}>
               Add new tag
             </button>
           </div>
         </div>
+
+        {/* Код для ввода названия трека */}
         <div className={styles['div-input-enter-track-name']}>
           <input
             className={styles['track-name-input']}
-            placeholder="Enter track name"
+            placeholder="Enter Artist Name"
             value={trackName}
             onChange={(e) => setTrackName(e.target.value)}
           />
         </div>
+
+        {/* Код для ввода описания */}
         <div className={styles['div-input-enter-description']}>
           <textarea
             className={styles['description-input']}
-            placeholder="Enter description"
+            placeholder="Enter Track Name"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>
+
+        {/* Код для загрузки аудиофайла */}
         <div className={styles['button-attach-audio']}>
           <label className={styles['audio-upload-button']}>
             {audioFile ? audioFile.name : 'Attach audio file (44100khz, 24bit)'}
@@ -224,6 +248,8 @@ export default function UploadTrackСomponent(props: UploadTrackProps) {
             />
           </label>
         </div>
+
+        {/* Код для выбора жанра и входа в аккаунт */}
         <div className={styles['auto-layer-row']}>
           <div className={styles['input-enter-remix-artist']}>
             <input className={styles['remix-artist-input']} placeholder="Enter remix artist" />
@@ -240,6 +266,8 @@ export default function UploadTrackСomponent(props: UploadTrackProps) {
             </select>
           </div>
         </div>
+
+        {/* Код для кнопки загрузки и модального окна */}
         <div className={styles['auto-layer-row-1']}>
           <div className={styles['set-a-release-date']}>
             <button className={styles['release-date-button']}>
@@ -251,27 +279,27 @@ export default function UploadTrackСomponent(props: UploadTrackProps) {
               Upload
             </button>
           </div>
-          
-          // Код для рендеринга сообщения о входе в аккаунт
-        <div>
-          <p>Вы не вошли в аккаунт. Пожалуйста, войдите в аккаунт, чтобы загрузить трек.</p>
-          <button onClick={handleLogin}>Войти в аккаунт</button>
-          {showModal && (
-        // Модальное окно
-        <div className="modal">
-          <div className="modal-content">
-            <p>Для загрузки, пожалуйста, войдите в аккаунт.</p>
-            <a href="log-in-page.html">Войти</a>
-            <button onClick={() => setShowModal(false)}>Закрыть</button>
-          </div>
-        </div>
-      )}
-          
-        </div>
-        
+
+          {/* Код для рендеринга сообщения о входе в аккаунт */}
+          {!user && (
+            <div>
+              <p>You are not signed in. Please sign in to upload a track.</p>
+              <button onClick={handleLogin}>Sign In</button>
+              {showModal && (
+                // Модальное окно
+                <div className="modal">
+                  <div className="modal-content">
+                    <p>Please sign in to upload a track.</p>
+                    <a href="log-in-page.html">Sign In</a>
+                    <button onClick={() => setShowModal(false)}>Close</button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
+   
     </div>
   );
 }
-

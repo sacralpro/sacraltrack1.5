@@ -15,7 +15,7 @@ const registerUser = async (email, password) => {
     console.log("User registered:", user.uid);
 
     // Добавляем пользователя в Firestore
-    const usersCollection = collection(firestore, "users");
+    const usersCollection = collection(firestore, "userartist");
     await addDoc(usersCollection, { uid: user.uid, email });
 
     return user.uid;

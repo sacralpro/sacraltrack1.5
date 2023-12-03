@@ -8,7 +8,9 @@ const nextConfig = {
       '/pages/uploadtrack': { page: '/pages/uploadtrack' },
       '/login': { page: '/log-in' }, // Добавьте эту строку для страницы логина
       '/pages/marketplace': { page: '/marketplace' }, // новая главная маркетплейс еще делаю
-      '/pages/marketplaceapi': { page: '/marketplaceapi' } // тест api spotify
+      '/pages/marketplaceapi': { page: '/marketplaceapi' }, // тест api spotify
+      '/pages/registration': { page: '/registration' } // registration page
+      
     };
   },
 };
